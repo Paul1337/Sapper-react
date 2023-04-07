@@ -1,10 +1,10 @@
 import React from 'react'
-import { Field } from '../../store/field'
+import { FieldModel } from '../../store/fieldStore'
 import styles from './Field.module.css'
 import Cell from '../Cell/Cell'
 
 interface FieldProps {
-    field: Field
+    field: FieldModel
 }
 
 function Field({ field }: FieldProps) {
@@ -12,7 +12,19 @@ function Field({ field }: FieldProps) {
         <div className={styles.field}>
             {field.map((column, x) => {
                 return column.map((el, y) => {
-                    return <Cell isOpened={false} flagType={0} bombCnt={4}></Cell>
+                    const position = {
+                        x: x * 30,
+                        y: y * 30,
+                    }
+                    return (
+                        <Cell
+                            isOpened={el.isOpened}
+                            flagType={el.flagType}
+                            bombCnt={el.bombCnt}
+                            position={position}
+                            key={x * column.length + y}
+                        ></Cell>
+                    )
                 })
             })}
         </div>

@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux'
-import Cell from './components/Cell/Cell'
 import Field from './components/Field/Field'
+import { RootState } from './store'
 
 function App() {
-    const field = useSelector((state) => state.field)
+    const field = useSelector((state: RootState) => state.field.field)
+    console.log(field)
     return (
         <>
             <Field field={field}></Field>

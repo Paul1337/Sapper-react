@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import fieldReducer from './field'
+import field from './fieldStore'
 
 export const store = configureStore({
     reducer: {
-        fieldReducer,
+        field,
     },
 })
 
