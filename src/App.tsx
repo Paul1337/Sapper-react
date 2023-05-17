@@ -17,11 +17,13 @@ const App = () => {
     return (
         <>
             <BrowserRouter>
-                <Routes>
-                    <Route path='/game' element={<GamePage />} />
-                    <Route path='/leaderboard' element={<LeaderboardPage />} />
-                    <Route path='*' element={<Navigate to='/game' />} />
-                </Routes>
+                <div className='gameCont'>
+                    <Routes>
+                        <Route path='/game' element={<GamePage />} />
+                        <Route path='/leaderboard' element={<LeaderboardPage />} />
+                        <Route path='*' element={<Navigate to='/game' />} />
+                    </Routes>
+                </div>
             </BrowserRouter>
         </>
     );

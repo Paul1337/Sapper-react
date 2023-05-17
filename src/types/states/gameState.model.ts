@@ -5,4 +5,5 @@ export interface IState {
     field: FieldState;
     currentGameMode: IGameMode;
     isPlaying: boolean;
+    score: number;
 }

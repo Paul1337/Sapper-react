@@ -1,3 +1,8 @@
 .field {
     display: inline-grid;
+    gap: 1px;
+}
+
+.field > div {
+    box-shadow: 0 0 0 1px black;
 }

@@ -1,5 +1,21 @@
-body,
-html {
+html,
+body {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.gameCont {
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 10px;
 }

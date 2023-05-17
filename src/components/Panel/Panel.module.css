@@ -1,0 +1,23 @@
+.panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: lightgray;
+    margin-bottom: 6px;
+}
+
+.score {
+    font-size: 20px;
+    margin: 8px;
+    font-family: sans-serif;
+}
+
+.controls {
+    /* min-width: 600px; */
+    display: flex;
+    align-items: center;
+}
+
+.controls button {
+    margin: 6px;
+}
