@@ -22,7 +22,7 @@ const CellData: FunctionComponent<ICellDataProps> = ({ isOpened, bombsCount, has
 
     if (hasBomb) {
         const style = {
-            background: `url('./bomb.png')`,
+            backgroundImage: `url('../../assets/cell-mark/bomb.png')`,
         };
         body = <span style={style} className={styles.cellBody}></span>;
     } else {
@@ -36,23 +36,16 @@ const CellData: FunctionComponent<ICellDataProps> = ({ isOpened, bombsCount, has
     return <div className={styles.cellData}>{body}</div>;
 };
 
-const Cell: FunctionComponent<ICellProps> = ({
-    isOpened,
-    flagType,
-    bombsCount,
-    hasBomb,
-    position,
-    onClick,
-}) => {
+const Cell: FunctionComponent<ICellProps> = (props) => {
     const style = {
-        gridRowStart: position.y + 1,
-        gridColumnStart: position.x + 1,
+        gridRowStart: props.position.y + 1,
+        gridColumnStart: props.position.x + 1,
     };
 
     return (
-        <div className={styles.cell} style={style} onClick={onClick}>
-            <CellData isOpened={isOpened} bombsCount={bombsCount} hasBomb={hasBomb} />
-            <CellFlag flagType={flagType} />
+        <div className={styles.cell} style={style} onClick={props.onClick}>
+            <CellData isOpened={props.isOpened} bombsCount={props.bombsCount} hasBomb={props.hasBomb} />
+            <CellFlag flagType={props.flagType} />
         </div>
     );
 };

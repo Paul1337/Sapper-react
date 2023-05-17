@@ -11,6 +11,8 @@ const Panel: FunctionComponent<IPanelProps> = ({ score }) => {
             <span className={styles.score}>
                 <span>Счёт: </span>
                 <span style={{ fontWeight: 700 }}>{score}</span>
+                <span style={{ marginLeft: '16px' }}>Время: </span>
+                <span style={{ fontWeight: 700 }}>0</span>
             </span>
             <span className={styles.controls}>
                 <button>Начать заново</button>

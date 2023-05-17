@@ -5,6 +5,7 @@
     background: lightgray;
     margin-bottom: 6px;
     align-items: center;
+    /* min-width: 600px; */
 }
 
 .score {
