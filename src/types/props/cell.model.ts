@@ -1,8 +1,9 @@
-import { IPoint } from '../states/field.model';
+import { FlagType, IPoint, IPointState } from '../states/field.model';
 
-export interface CellProps {
-    isOpened: boolean;
-    flagType: number;
-    bombCnt: number;
+export interface ICellProps extends IPointState {
     position: IPoint;
+}
+
+export interface ICellFlagProps {
+    flagType: FlagType;
 }

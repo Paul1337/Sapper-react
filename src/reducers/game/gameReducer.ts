@@ -11,6 +11,7 @@ export const openCellAction = createAction<IPoint>('game/openCell');
 const initialState: IState = {
     field: [[]],
     currentGameMode: config.gameModes[0],
+    isPlaying: false,
 };
 
 const fieldReducer = createReducer(initialState, (builder) => {
@@ -21,7 +22,7 @@ const fieldReducer = createReducer(initialState, (builder) => {
             if (!fieldPointState.isOpened) {
                 fieldPointState.isOpened = true;
                 if (fieldPointState.hasBomb) {
-                    // game over
+                    state.isPlaying = false;
                 }
             }
         })
