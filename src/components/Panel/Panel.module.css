@@ -4,6 +4,7 @@
     justify-content: space-between;
     background: lightgray;
     margin-bottom: 6px;
+    align-items: center;
 }
 
 .score {
@@ -13,11 +14,12 @@
 }
 
 .controls {
-    /* min-width: 600px; */
     display: flex;
     align-items: center;
 }
 
 .controls button {
     margin: 6px;
+    cursor: pointer;
+    padding: 4px;
 }

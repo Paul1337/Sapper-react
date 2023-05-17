@@ -20,7 +20,7 @@ const App = () => {
                 <div className='gameCont'>
                     <Routes>
                         <Route path='/game' element={<GamePage />} />
-                        <Route path='/leaderboard' element={<LeaderboardPage />} />
+                        <Route path='/leaders' element={<LeaderboardPage />} />
                         <Route path='*' element={<Navigate to='/game' />} />
                     </Routes>
                 </div>
