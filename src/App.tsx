@@ -1,15 +1,30 @@
-import { useSelector } from 'react-redux'
-import Field from './components/Field/Field'
-import { RootState } from './store'
+import { useSelector } from 'react-redux';
+import Field from './components/Field/Field';
+import { RootState, useAppDispatch } from './store';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import GamePage from './pages/Game/GamePage';
+import LeaderboardPage from './pages/Leaderboard/LeaderboardPage';
+import { useEffect } from 'react';
+import { initFieldAction } from './reducers/game/gameReducer';
 
-function App() {
-    const field = useSelector((state: RootState) => state.field.field)
-    console.log(field)
+const App = () => {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(initFieldAction());
+    }, []);
+
     return (
         <>
-            <Field field={field}></Field>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/game' element={<GamePage />} />
+                    <Route path='/leaderboard' element={<LeaderboardPage />} />
+                    <Route path='*' element={<Navigate to='/game' />} />
+                </Routes>
+            </BrowserRouter>
         </>
-    )
-}
+    );
+};
 
-export default App
+export default App;
