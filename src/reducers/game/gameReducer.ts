@@ -7,7 +7,8 @@ import { config } from './config/config';
 
 export const initFieldAction = createAction('game/init');
 export const openCellAction = createAction<IPoint>('game/openCell');
-export const startNewGame = createAction('game/startNew');
+export const startNewGameAction = createAction('game/startNew');
+export const updateTimeAction = createAction('game/updateTime');
 
 const initialState: IState = {
     field: [[]],
@@ -26,11 +27,14 @@ const fieldReducer = createReducer(initialState, (builder) => {
         .addCase(initFieldAction, (state, action) => {
             state.field = Field.initField(state.currentGameMode);
         })
-        .addCase(startNewGame, (state, action) => {
+        .addCase(startNewGameAction, (state, action) => {
             state.bombsLeft = state.currentGameMode.bombsCount;
             state.field = Field.initField(state.currentGameMode);
             state.isPlaying = true;
             state.time = state.currentGameMode.time;
+        })
+        .addCase(updateTimeAction, (state, action) => {
+            state.time--;
         });
 });
 

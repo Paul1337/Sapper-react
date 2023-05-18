@@ -3,7 +3,7 @@ import styles from './Panel.module.css';
 import { IPanelProps } from '../../types/props/panel.model';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store';
-import { startNewGame } from '../../reducers/game/gameReducer';
+import { startNewGameAction } from '../../reducers/game/gameReducer';
 
 const formatTimeItem = (value: number) => value.toString().padStart(2, '0');
 const formatTime = (value: number) =>
@@ -14,7 +14,7 @@ const Panel: FunctionComponent<IPanelProps> = ({ bombsLeft, time }) => {
     const dispatch = useAppDispatch();
 
     const handleRestartClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        dispatch(startNewGame());
+        dispatch(startNewGameAction());
     };
 
     return (

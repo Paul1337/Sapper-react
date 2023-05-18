@@ -5,13 +5,13 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import GamePage from './pages/Game/GamePage';
 import LeaderboardPage from './pages/Leaderboard/LeaderboardPage';
 import { useEffect } from 'react';
-import { initFieldAction, startNewGame } from './reducers/game/gameReducer';
+import { startNewGameThunk } from './thunks/game';
 
 const App = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(startNewGame());
+        dispatch(startNewGameThunk());
     }, []);
 
     return (
