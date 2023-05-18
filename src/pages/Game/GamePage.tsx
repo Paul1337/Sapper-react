@@ -6,10 +6,12 @@ import Panel from '../../components/Panel/Panel';
 
 const GamePage = () => {
     const field = useSelector((state: RootState) => state.field);
-    const score = useSelector((state: RootState) => state.score);
+    const bombsLeft = useSelector((state: RootState) => state.bombsLeft);
+    const time = useSelector((state: RootState) => state.time);
+
     return (
         <>
-            <Panel score={score} />
+            <Panel bombsLeft={bombsLeft} time={time} />
             <Field field={field}></Field>
         </>
     );

@@ -1,3 +1,4 @@
 export interface IPanelProps {
-    score: number;
+    bombsLeft: number;
+    time: number;
 }

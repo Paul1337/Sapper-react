@@ -7,12 +7,12 @@
     background: lightgray;
 }
 
-.cellOpened {
-    background: #ededed;
-}
-
 .cell:hover {
     background: darkgray;
+}
+
+.cellOpened {
+    background: #ededed !important;
 }
 
 .cellFlag {

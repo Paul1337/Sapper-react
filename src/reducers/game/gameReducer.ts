@@ -13,7 +13,8 @@ const initialState: IState = {
     field: [[]],
     currentGameMode: config.gameModes[0],
     isPlaying: false,
-    score: 0,
+    bombsLeft: config.gameModes[0].bombsCount,
+    time: 0,
 };
 
 const fieldReducer = createReducer(initialState, (builder) => {
@@ -26,8 +27,10 @@ const fieldReducer = createReducer(initialState, (builder) => {
             state.field = Field.initField(state.currentGameMode);
         })
         .addCase(startNewGame, (state, action) => {
-            state.score = 0;
+            state.bombsLeft = state.currentGameMode.bombsCount;
             state.field = Field.initField(state.currentGameMode);
+            state.isPlaying = true;
+            state.time = state.currentGameMode.time;
         });
 });
 
