@@ -2,6 +2,7 @@ import React, { FunctionComponent, ReactElement } from 'react';
 import styles from './Cell.module.css';
 import { ICellDataProps, ICellFlagProps, ICellProps } from '../../types/props/cell.model';
 import { FlagType } from '../../types/states/field.model';
+import bombUrl from '../../assets/cell-mark/bomb.png';
 
 const CellFlag: FunctionComponent<ICellFlagProps> = ({ flagType }) => {
     return (
@@ -20,20 +21,16 @@ const CellFlag: FunctionComponent<ICellFlagProps> = ({ flagType }) => {
 const CellData: FunctionComponent<ICellDataProps> = ({ isOpened, bombsCount, hasBomb }) => {
     let body: ReactElement = <></>;
 
-    if (hasBomb) {
-        const style = {
-            backgroundImage: `url('../../assets/cell-mark/bomb.png')`,
-        };
-        body = <span style={style} className={styles.cellBody}></span>;
-    } else {
-        if (isOpened) {
-            body = <div className={styles.bombCnt}> {bombsCount} </div>;
+    if (isOpened) {
+        if (hasBomb) {
+            const style = { backgroundImage: `url(${bombUrl})` };
+            return <div style={style} className={styles.cellBomb}></div>;
         } else {
-            body = <></>;
+            return bombsCount > 0 ? <div className={styles.bombCnt}> {bombsCount} </div> : <></>;
         }
+    } else {
+        return <></>;
     }
-
-    return <div className={styles.cellData}>{body}</div>;
 };
 
 const Cell: FunctionComponent<ICellProps> = (props) => {
@@ -43,7 +40,11 @@ const Cell: FunctionComponent<ICellProps> = (props) => {
     };
 
     return (
-        <div className={styles.cell} style={style} onClick={props.onClick}>
+        <div
+            className={styles.cell.concat(' ', props.isOpened ? styles.cellOpened : '')}
+            style={style}
+            onClick={props.onClick}
+        >
             <CellData isOpened={props.isOpened} bombsCount={props.bombsCount} hasBomb={props.hasBomb} />
             <CellFlag flagType={props.flagType} />
         </div>

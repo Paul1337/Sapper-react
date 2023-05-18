@@ -1,3 +1,5 @@
+import { IPoint } from '../../../types/states/field.model';
+
 export const mix2dArray = (array: Array<Array<any>>) => {
     if (array.length === 0 || array[0].length === 0) return;
     const m = array.length;
@@ -12,4 +14,18 @@ export const mix2dArray = (array: Array<Array<any>>) => {
             array[iRan][jRan] = t;
         }
     }
+};
+
+export const getPointsAround = (point: IPoint) => {
+    const points = [
+        { x: point.x + 1, y: point.y },
+        { x: point.x + 1, y: point.y + 1 },
+        { x: point.x + 1, y: point.y - 1 },
+        { x: point.x - 1, y: point.y },
+        { x: point.x - 1, y: point.y + 1 },
+        { x: point.x - 1, y: point.y - 1 },
+        { x: point.x, y: point.y + 1 },
+        { x: point.x, y: point.y - 1 },
+    ];
+    return points;
 };

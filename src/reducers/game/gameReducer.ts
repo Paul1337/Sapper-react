@@ -20,13 +20,7 @@ const fieldReducer = createReducer(initialState, (builder) => {
     builder
         .addCase(openCellAction, (state, action) => {
             const point = action.payload;
-            const fieldPointState = state.field[point.y][point.x];
-            if (!fieldPointState.isOpened) {
-                fieldPointState.isOpened = true;
-                if (fieldPointState.hasBomb) {
-                    state.isPlaying = false;
-                }
-            }
+            Field.openCell(point, state);
         })
         .addCase(initFieldAction, (state, action) => {
             state.field = Field.initField(state.currentGameMode);

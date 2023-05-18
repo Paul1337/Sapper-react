@@ -1,6 +1,7 @@
-import { FieldState, FlagType, IPoint } from '../../../types/states/field.model';
+import { FieldState, FlagType, IPoint, IPointState } from '../../../types/states/field.model';
 import { IGameMode } from '../../../types/states/gameConfig.model';
-import { mix2dArray } from './utils';
+import { getPointsAround, mix2dArray } from './utils';
+import { IState } from '../../../types/states/gameState.model';
 
 type BombsMap = Array<Array<boolean>>;
 
@@ -22,16 +23,7 @@ export class Field {
 
     private static getBombsAround(bombsMap: BombsMap, point: IPoint) {
         const bombIn = (p: IPoint) => (bombsMap?.[p.y]?.[p.x] ? Number(bombsMap[p.y][p.x]) : 0);
-        const pointsToCheck = [
-            { x: point.x + 1, y: point.y },
-            { x: point.x + 1, y: point.y + 1 },
-            { x: point.x + 1, y: point.y - 1 },
-            { x: point.x - 1, y: point.y },
-            { x: point.x - 1, y: point.y + 1 },
-            { x: point.x - 1, y: point.y - 1 },
-            { x: point.x, y: point.y + 1 },
-            { x: point.x, y: point.y - 1 },
-        ];
+        const pointsToCheck = getPointsAround(point);
         return pointsToCheck.reduce((acc, cur) => acc + bombIn(cur), 0);
     }
 
@@ -54,5 +46,24 @@ export class Field {
         }
 
         return field;
+    }
+
+    public static openCell(point: IPoint, state: IState) {
+        const fieldPointState = state.field[point.y][point.x];
+
+        if (!fieldPointState.isOpened) {
+            fieldPointState.isOpened = true;
+            if (fieldPointState.hasBomb) {
+                state.isPlaying = false;
+            } else {
+                if (fieldPointState.bombsCount === 0) {
+                    getPointsAround(point)
+                        .filter((point) => Boolean(state.field?.[point.y]?.[point.x]))
+                        .forEach((point) => {
+                            Field.openCell(point, state);
+                        });
+                }
+            }
+        }
     }
 }

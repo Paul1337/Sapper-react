@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const Panel: FunctionComponent<IPanelProps> = ({ score }) => {
     const navigate = useNavigate();
 
+    const handleRestartClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {};
+
     return (
         <div className={styles.panel}>
             <span className={styles.score}>
@@ -15,7 +17,7 @@ const Panel: FunctionComponent<IPanelProps> = ({ score }) => {
                 <span style={{ fontWeight: 700 }}>0</span>
             </span>
             <span className={styles.controls}>
-                <button>Начать заново</button>
+                <button onClick={handleRestartClick}>Начать заново</button>
                 <button onClick={() => navigate('/leaders')}>Таблица рекордов</button>
             </span>
         </div>
