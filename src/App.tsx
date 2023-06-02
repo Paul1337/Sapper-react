@@ -11,7 +11,7 @@ const App = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(startNewGameThunk());
+        // dispatch(startNewGameThunk());
     }, []);
 
     return (

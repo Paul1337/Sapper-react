@@ -1,7 +1,7 @@
 import { FieldState, FlagType, IPoint, IPointState } from '../../../types/states/field.model';
 import { IGameMode } from '../../../types/states/gameConfig.model';
 import { getPointsAround, mix2dArray } from './utils';
-import { IState } from '../../../types/states/gameState.model';
+import { EGameState, IState } from '../../../types/states/gameState.model';
 
 type BombsMap = Array<Array<boolean>>;
 
@@ -54,7 +54,7 @@ export class Field {
         if (!fieldPointState.isOpened) {
             fieldPointState.isOpened = true;
             if (fieldPointState.hasBomb) {
-                state.isPlaying = false;
+                state.gameState = EGameState.GameOver;
             } else {
                 if (fieldPointState.bombsCount === 0) {
                     getPointsAround(point)
